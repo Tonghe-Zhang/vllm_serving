@@ -14,6 +14,12 @@ def parse_args():
     parser.add_argument("--model", default="Qwen3-VL-8B-Thinking")
     parser.add_argument("--image", type=Path, default=None, help="Optional local image to attach.")
     parser.add_argument("--no-thinking", action="store_true", help="Suppress <think> blocks.")
+    parser.add_argument(
+        "--system-prompt",
+        type=Path,
+        default=Path("./system_prompt/null.md"),
+        help="Path to a .md or .txt system prompt file.",
+    )
     return parser.parse_args()
 
 
@@ -34,7 +40,12 @@ def main():
     history = []
 
     extra = {"chat_template_kwargs": {"enable_thinking": False}} if args.no_thinking else {}
-
+    if args.system_prompt and args.system_prompt.exists():
+        system_text = args.system_prompt.read_text().strip()
+        history.append({"role": "system", "content": system_text})
+        print(f"System prompt loaded: {args.system_prompt.name}")
+    else:
+        print(f"No system prompt provided. ")
     print(f"Chatting with {args.model} at {args.base_url}")
     print("Type 'quit' or Ctrl-C to exit.\n")
 
@@ -67,8 +78,7 @@ def main():
             print(delta, end="", flush=True)
             reply += delta
         print("\n")
-        history.append({"role": "assistant", "content": reply})
-        print(f"\nAssistant: {reply}\n")
+        history.append({"role": "assistant", "content": reply})  # only once, after loop
 
 
 if __name__ == "__main__":

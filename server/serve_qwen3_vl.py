@@ -80,8 +80,8 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--api-key",
-        default="EMPTY",
-        help="Optional API key check. Keep EMPTY for local testing.",
+        default=None,
+        help="Optional API key check. Keep None for local testing.",
     )
     parser.add_argument(
         "--disable-generation-config",
@@ -154,13 +154,14 @@ def main() -> int:
         "--port", str(args.port),
         "--dtype", args.dtype,
         "--max-model-len", str(args.max_model_len),
-        "--api-key", args.api_key,
         "--trust-remote-code",
         "--attention-backend", args.attention_backend,
         "--limit-mm-per-prompt", f'{{"image": {args.limit_images_per_prompt}}}',    
         "--tensor-parallel-size", str(args.tensor_parallel_size),
         "--gpu-memory-utilization", str(args.gpu_memory_utilization),
     ]
+    if args.api_key:
+        cmd.extend(["--api-key", args.api_key])
 
     if args.disable_generation_config:
         cmd.extend(["--generation-config", "vllm"])
