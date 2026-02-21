@@ -24,7 +24,7 @@ def parse_args():
 
 
 def build_content(text: str, image_path: Path | None) -> str | list:
-    if image_path is None:
+    if image_path is None or not image_path.exists():
         return text
     data = base64.b64encode(image_path.read_bytes()).decode()
     suffix = image_path.suffix.lstrip(".").replace("jpg", "jpeg")
