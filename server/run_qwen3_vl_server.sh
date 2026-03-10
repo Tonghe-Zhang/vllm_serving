@@ -1,2 +1,7 @@
-cd /usr0/tonghez/vllm_serving/vllm_serving
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+cd "$SCRIPT_DIR/../vllm_serving"
+
 uv run python server/serve_qwen3_vl.py --model-type instruct   --model-base-dir /usr0/tonghez/PretrainedModels   --tensor-parallel-size 4   --gpu-memory-utilization 0.65
