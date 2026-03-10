@@ -3,8 +3,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR/../vllm_serving"
 
 
-CUDA_VISIBLE_DEVICES=0,1,2,3
+CUDA_VISIBLE_DEVICES=2,3
 uv run python server/serve_qwen3_vl.py \
 --model-type instruct --model-base-dir ../PretrainedModels \
---tensor-parallel-size 4 \
---gpu-memory-utilization 0.1
+--tensor-parallel-size 2 \
+--gpu-memory-utilization 0.2
