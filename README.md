@@ -2,11 +2,11 @@
 ## How to use this repo to host a open-source VLM and listen to it from another machine:
 
 ### Install server and client dependencies:
-* Install openai package in the client directory by running 
+* Install openai package in the client environment by running 
 ```bash
 uv pip install ./vllm_serving/install_client_env.sh
 ```
-* Install the server packages in the large remote server by running
+* Build a .venv in the server machine by running
 ```bash
 uv pip install ./vllm_serving/install_server_env.sh
 ```
