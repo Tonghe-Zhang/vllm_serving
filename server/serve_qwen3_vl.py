@@ -12,6 +12,7 @@ from pathlib import Path
 KNOWN_MODELS = {
     "thinking": "Qwen3-VL-8B-Thinking",
     "instruct": "Qwen3-VL-8B-Instruct",
+    "instruct-32b": "Qwen3-VL-32B-Instruct",
 }
 
 
