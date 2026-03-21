@@ -36,6 +36,9 @@ def build_content(text: str, image_path: Path | None) -> str | list:
 
 def main():
     args = parse_args()
+    if args.image is not None and not args.image.exists():
+        print(f"Error: image not found: {args.image}", file=sys.stderr)
+        sys.exit(1)
     client = OpenAI(base_url=args.base_url, api_key="EMPTY")
     history = []
 
