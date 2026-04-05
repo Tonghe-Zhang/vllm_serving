@@ -14,6 +14,7 @@ KNOWN_MODELS = {
     "instruct": "Qwen3-VL-8B-Instruct",
     "instruct-32b": "Qwen3-VL-32B-Instruct",
     "spatial": "SpaceQwen2.5-VL-3B-Instruct",
+    "gemma4-31b": "gemma-4-31B",
 }
 
 

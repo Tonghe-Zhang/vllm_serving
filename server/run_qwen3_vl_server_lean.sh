@@ -1,10 +1,10 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-cd "$SCRIPT_DIR/../vllm_serving"
+REPO_DIR="$SCRIPT_DIR/.."
+cd "$REPO_DIR"
 
-
-CUDA_VISIBLE_DEVICES=2,3
-uv run python server/serve_qwen3_vl.py \
---model-type instruct --model-base-dir ../PretrainedModels \
+export CUDA_VISIBLE_DEVICES=2,3
+python server/serve_vlm.py \
+--model-type qwen3-vl-8b --model-base-dir /usr0/PretrainedModels \
 --tensor-parallel-size 2 \
 --gpu-memory-utilization 0.2

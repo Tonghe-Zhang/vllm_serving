@@ -5,8 +5,7 @@ REPO_DIR="$SCRIPT_DIR/.."
 
 cd "$REPO_DIR"
 
-python server/serve_qwen3_vl.py \
---model /usr0/tonghez/PretrainedModels/SpaceQwen2.5-VL-3B-Instruct \
---attention-backend FLASH_ATTN \
+python server/serve_vlm.py \
+--model /usr0/PretrainedModels/SpaceQwen2.5-VL-3B-Instruct \
 --tensor-parallel-size 4 \
 --gpu-memory-utilization 0.65

@@ -1,3 +1,7 @@
-uv run python ./vllm_serving/client/client_qwen3_vl.py  \
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_DIR="$SCRIPT_DIR/.."
+cd "$REPO_DIR"
+
+python client/client_vlm.py \
     --model Qwen3-VL-32B-Instruct \
-    --image ./vllm_serving/media/image.png \
+    --image media/image.png
